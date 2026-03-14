@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DrinkPedia | Explore Your Taste</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Cart Toggle Button -->
+    <button class="cart-toggle" onclick="toggleCart()" aria-label="Buka Keranjang">
+        🛒
+        <span id="cartBadge" class="cart-badge" style="display: none;">0</span>
+    </button>
+
+    <!-- STEP 1: SPLASH SCREEN -->
+    <section id="step-1" onclick="goToStep2()">
+        <div class="coffee-icon">☕</div>
+        <h1>DrinkPedia</h1>
+        <p class="subtitle">Explore Your Taste</p>
+        <p class="tap-hint">✨ Tap anywhere to begin ✨</p>
+    </section>
+
+    <!-- STEP 2: ABOUT -->
+    <section id="step-2">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1442512595331-e89e7385a861?auto=format&fit=crop&w=800&q=80"
+                    alt="Coffee Shop">
+            </div>
+            <div class="about-box">
+                <h2>🚀 About DrinkPedia</h2>
+                <p>DrinkPedia adalah perpustakaan digital interaktif yang mengungkap rahasia di balik setiap tegukan.
+                    Jelajahi menu, pelajari sejarah, dan pesan langsung ke coffee shop kami!</p>
+                <button class="btn" onclick="goToStep3()">Explore Menus →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 3: CATEGORIES -->
+    <section id="step-3">
+        <div class="section-header">
+            <h2>🎯 Pilih Kategori</h2>
+            <p class="category-desc">Jelajahi koleksi minuman terbaik kami dan temukan favorit barumu</p>
+        </div>
+
+        <div class="grid">
+            <!-- Coffee Card -->
+            <div class="card" onclick="openCategoryModal('coffee')">
+                <div class="card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"
+                        alt="Coffee" class="card-image">
+                    <span class="category-badge">Popular</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon-wrapper">
+                        <span class="card-icon">☕</span>
+                    </div>
+                    <h3>Coffee</h3>
+                    <p>V60, Espresso, Latte Art, Cold Brew & resep rahasia barista profesional</p>
+                    <div class="card-cta">
+                        Explore Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soda Card -->
+            <div class="card" onclick="openCategoryModal('soda')">
+                <div class="card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=600&q=80"
+                        alt="Soda" class="card-image">
+                    <span class="category-badge">Refreshing</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon-wrapper">
+                        <span class="card-icon">🥤</span>
+                    </div>
+                    <h3>Soda & Fizz</h3>
+                    <p>Carbonated drinks, mocktails, dan minuman segar berkarbonasi yang menyegarkan</p>
+                    <div class="card-cta">
+                        Explore Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Healthy Card -->
+            <div class="card" onclick="openCategoryModal('healthy')">
+                <div class="card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56365a6d1a?auto=format&fit=crop&w=600&q=80"
+                        alt="Healthy" class="card-image">
+                    <span class="category-badge">Healthy</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon-wrapper">
+                        <span class="card-icon">🍃</span>
+                    </div>
+                    <h3>Healthy & Others</h3>
+                    <p>Teh artisan, fresh juices, smoothies & minuman fungsional untuk gaya hidup sehat</p>
+                    <div class="card-cta">
+                        Explore Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 DrinkPedia Project • Made with ❤️</p>
+        </div>
+    </section>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Category Modal -->
+    <div id="categoryModal" class="modal-overlay" onclick="closeCategoryModalOnOverlay(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span id="modalIcon" class="modal-title-icon">☕</span>
+                    <span id="modalCategoryName">Coffee</span>
+                </div>
+                <button class="close-btn" onclick="closeCategoryModal()">✕</button>
+            </div>
+
+            <div class="tab-nav" id="tabNav">
+                <!-- Tabs injected by JS -->
+            </div>
+
+            <div id="tabContent">
+                <!-- Table injected by JS -->
+            </div>
+
+        
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="detailModal" class="detail-modal" onclick="closeDetailModalOnOverlay(event)">
+        <div class="detail-content">
+            <div class="detail-header">
+                <div>
+                    <div id="detailTitle" class="detail-title">Espresso</div>
+                    <div id="detailSubtitle" class="detail-subtitle">Hot • Italy</div>
+                </div>
+                <button class="detail-close" onclick="closeDetailModal()">✕</button>
+            </div>
+
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <div class="detail-item-label">Asal</div>
+                    <div id="detailOrigin" class="detail-item-value">Italy</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-item-label">Tahun</div>
+                    <div id="detailYear" class="detail-item-value">1884</div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">📝 Deskripsi</div>
+                <div id="detailDescription" class="detail-section-content">
+                    Minuman kopi pekat yang dibuat dengan mengekstrak biji kopi yang digiling halus dengan air panas
+                    bertekanan tinggi.
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">🥘 Bahan-bahan</div>
+                <div id="detailIngredients" class="detail-section-content" style="white-space: pre-line;"></div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-section-title">📍 Sejarah</div>
+                <div id="detailHistory" class="detail-section-content"></div>
+            </div>
+
+            <!-- Add to Cart Button injected by JS -->
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal" onclick="closeCartOnOverlay(event)">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>🛒 Keranjang Pesanan</h3>
+                <button class="cart-close" onclick="toggleCart()">✕</button>
+            </div>
+
+            <div id="cartItems" class="cart-items">
+                <!-- Cart items injected by JS -->
+                <div class="cart-empty">
+                    <div style="font-size:48px;margin-bottom:15px">🛒</div>
+                    <p>Keranjang masih kosong</p>
+                    <p style="font-size:13px;color:var(--text-muted);margin-top:10px">Yuk explore menu dan pesan minuman
+                        favoritmu!</p>
+                </div>
+            </div>
+
+            <div id="cartFooter" class="cart-footer" style="display: none;">
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span id="cartTotal">Rp 0</span>
+                </div>
+                <button class="btn-checkout" onclick="checkoutWhatsApp()">
+                    Pesan Dan Bayar Sekarang!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="Script.js"></script>
+</body>
+
+</html>
